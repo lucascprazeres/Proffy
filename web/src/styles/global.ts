@@ -35,7 +35,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: var(---color-background);
+    background: var(--color-background);
   }
 
   #root {
