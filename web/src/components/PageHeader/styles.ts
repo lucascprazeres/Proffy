@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Header = styled.div`
+export const Header = styled.header`
   display: flex;
   flex-direction: column;
 
@@ -41,5 +41,24 @@ export const Header = styled.div`
     font: 700 3.6rem Archivo;
     line-height: 4.2rem;
     color: var(--color-title-in-primary);
+  }
+
+  @media(min-width: 700px) {
+    height: 340px;
+
+    .top-bar-container {
+      max-width: 1100px;
+    }
+
+    .header-content {
+      flex: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
   }
 `
