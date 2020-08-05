@@ -4,8 +4,6 @@
 
 <h4 align=center><em>"A educação é a arma mais poderosa que você pode usar para mudar o mundo." - Nelson Mandela</em></h4>
 
-<br />
-
 ## 🌱 Proposta do projeto
 
 O Proffy nasceu de uma iniciativa de educadores para a comunidade de desenvolvedores, como forma de proporcionar a criação de um MVP com a stack NodeJS, React e React Native ([saiba mais](https://nextlevelweek.com/)). Esse projeto consiste em uma plataforma que liga alunos a professores particulares de diversas matérias, utilizando um sistema de crud com arquitetura de rest api no backend e com frontend's web e mobile.
@@ -50,4 +48,4 @@ Depois que a sua pull request for aceita você pode deletar a sua branch.
 
 <hr />
 
-<h4 align=center>Made with by <a href="https://www.linkedin.com/in/lucas-prazeres/">Lucas dos Prazeres</a></h4>
+<h4 align=center>Made with 💜 by <a href="https://www.linkedin.com/in/lucas-prazeres/">Lucas dos Prazeres</a></h4>
