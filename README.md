@@ -2,7 +2,7 @@
   <img src=".github/proffy-banner.png"/>
 </h1>
 
-<h3 align=center><em>"A educação é a arma mais poderosa que você pode usar para mudar o mundo." - Nelson Mandela</em></h3>
+<h4 align=center><em>"A educação é a arma mais poderosa que você pode usar para mudar o mundo." - Nelson Mandela</em></h4>
 
 <br />
 
@@ -50,4 +50,4 @@ Depois que a sua pull request for aceita você pode deletar a sua branch.
 
 <hr />
 
-<h3 align=center>Made with by <a href="https://www.linkedin.com/in/lucas-prazeres/">Lucas dos Prazeres</a></h3>
+<h4 align=center>Made with by <a href="https://www.linkedin.com/in/lucas-prazeres/">Lucas dos Prazeres</a></h4>
