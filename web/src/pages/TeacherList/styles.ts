@@ -32,7 +32,7 @@ export const PageContainer = styled.div`
       bottom: -28px;
     }
 
-    #search-teachers .input-block + .input-block {
+    #search-teachers .select-block + .select-block {
     margin-top: 0;
     }
 

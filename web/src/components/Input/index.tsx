@@ -10,7 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ name, label, ...rest }) => (
   <Container className="input-block">
     <label htmlFor={name}>{label}</label>
-    <input type="text" id={name} {...rest}/>
+    <input id={name} {...rest}/>
   </Container>
 );
 
