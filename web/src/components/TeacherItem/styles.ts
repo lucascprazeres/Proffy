@@ -58,7 +58,7 @@ export const Container = styled.main`
     display: block;
   }
 
-  .teacher-item footer button {
+  .teacher-item footer a {
     width: 20rem;
     height: 5.6rem;
     background: var(--color-secundary);
@@ -67,13 +67,14 @@ export const Container = styled.main`
     border-radius: 0.8rem;
     cursor: pointer;
     font: 700 1.4rem Archivo;
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     transition: 0.2s;
   }
 
-  .teacher-item footer button:hover {
+  .teacher-item footer a:hover {
     background: var(--color-secundary-dark);
   }
 
@@ -87,13 +88,13 @@ export const Container = styled.main`
       margin-left: 1.6rem;
     }
 
-    .teacher-item footer button {
+    .teacher-item footer a {
       width: 24.5rem;
       font-size: 1.6rem;
       justify-content: center;
     }
 
-    .teacher-item footer button img {
+    .teacher-item footer a img {
       margin-right: 1.6rem;
     }
   } 

@@ -3,39 +3,58 @@ import React from 'react';
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import { Container } from './styles';
+import api from '../../services/api';
 
-const TeacherItem: React.FC = () => {
+export interface Teacher {
+  id: number;
+  name: string;
+  avatar: string;
+  whatsapp: string;
+  bio: string;
+  subject: string;
+  cost: number;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  function handleCreateNewConnection() {
+    api.post('connections', {
+      user_id: teacher.id,
+    })
+  }
+  
   return (
     <Container>
       <article className="teacher-item">
         <header>
           <img
-            src="https://avatars0.githubusercontent.com/u/51201126?s=460&u=62e4abe922d28596d36b0cd2479f257041af11eb&v=4"
-            alt=""
+            src={teacher.avatar}
+            alt={teacher.name}
           />
           <div>
-            <strong>Lucas Prazeres</strong>
-            <span>Programação</span>
+            <strong>{teacher.name}</strong>
+            <span>{teacher.subject}</span>
           </div>
         </header>
 
-        <p>
-          Entusiasta das melhores tecnologias do desenvolvimento web e mobile.
-              <br /> <br />
-              Apaixonado pela área de ti e pela programação no geral. Já trabalhei na Nasa, Google e
-              Facebook e agora ministro aulas de programação por diversão.
-            </p>
+        <p>{teacher.bio}</p>
 
         <footer>
           <p>
             Preço/hora
 
-                <strong>R$80,00</strong>
+                <strong>R${teacher.cost}</strong>
           </p>
-          <button type="button">
-            <img src={whatsappIcon} alt="" />
+          <a
+          target="_blank"
+          href={`https://wa.me/${teacher.whatsapp}`}
+          onClick={handleCreateNewConnection}>
+            <img src={whatsappIcon} alt="Entrar em contato" />
                 Entrar em contato
-              </button>
+          </a>
         </footer>
       </article>
     </Container>
