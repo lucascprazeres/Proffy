@@ -20,6 +20,7 @@ function TeacherList() {
                 { value: "Artes", label: "Artes" },
                 { value: "Química", label: "Química" },
                 { value: "Redação", label: "Redação" },
+                { value: "Geografia", label: "Geografia" },
                 { value: "Biologia", label: "Biologia" },
                 { value: "Matemática", label: "Matemática" },
                 { value: "História", label: "História" },
