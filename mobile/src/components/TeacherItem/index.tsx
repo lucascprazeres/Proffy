@@ -8,31 +8,41 @@ import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 import styles from './styles';
 import { RectButton } from 'react-native-gesture-handler';
 
-const TeacherItem: React.FC = () => {
+export interface Teacher {
+  id: number;
+  name: string;
+  avatar: string;
+  whatsapp: string;
+  bio: string;
+  subject: string;
+  cost: number;
+}
+
+interface TeacherProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherProps> = ({ teacher }) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
         <Image
           style={styles.avatar}
-          source={{ uri: 'https://github.com/lucascprazeres.png' }}
+          source={{ uri: teacher.avatar }}
         />
 
         <View style={styles.profileInfo}>
-          <Text style={styles.name}>Lucas dos Prazeres</Text>
-          <Text style={styles.subject}>Física</Text>
+          <Text style={styles.name}>{teacher.name}</Text>
+          <Text style={styles.subject}>{teacher.subject}</Text>
         </View>
       </View>
 
-      <Text style={styles.bio}>
-        Entusiasta na área da física quântica. {'\n'}{'\n'}
-        Tenho profundos conhecimentos nesse ramo, que eu adquiri assitindo "Vingadores: Ultimato".
-        Até o momento, já consegui desenvolver 5 máquinas do tempo (uma delas utilizada nas filmagens de Dark).
-      </Text>
+      <Text style={styles.bio}>{teacher.bio}</Text>
 
       <View style={styles.footer}>
         <Text style={styles.price}>
           Preço/hora {'   '}
-          <Text style={styles.priceValue}>R$45,00</Text>
+          <Text style={styles.priceValue}>R${teacher.cost}</Text>
         </Text>
 
         <View style={styles.buttonsContainer}>
