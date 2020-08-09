@@ -1,4 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { View, Image, Text, Linking } from 'react-native';
 
 import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
@@ -20,13 +23,42 @@ export interface Teacher {
 
 interface TeacherProps {
   teacher: Teacher;
+  isFavorite: boolean;
 }
 
-const TeacherItem: React.FC<TeacherProps> = ({ teacher }) => {
+const TeacherItem: React.FC<TeacherProps> = ({ teacher, isFavorite }) => {
+  const [teacherIsFavorite, setTeacherIsFavorite] = useState(isFavorite);
+
   const handleLinkToWhatsapp = useCallback(() => {
     Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`);
   }, []);
-  
+
+  const handleToggleFavoritesOnLocalStorage = useCallback(async () => {
+    const favoritesJSON = await AsyncStorage.getItem('favorites');
+
+    let favoritesList: Teacher[] = [];
+
+    if (favoritesJSON) {
+      favoritesList = JSON.parse(favoritesJSON);
+    }
+
+    if (teacherIsFavorite) {
+      const favoriteIndex = favoritesList.findIndex((item: Teacher) => {
+        return item.id === teacher.id;
+      });
+
+      favoritesList.splice(favoriteIndex, 1);
+
+      setTeacherIsFavorite(false);
+    } else {
+      favoritesList.push(teacher);
+
+      setTeacherIsFavorite(true);
+    }
+
+    await AsyncStorage.setItem('favorites', JSON.stringify(favoritesList));
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -50,9 +82,16 @@ const TeacherItem: React.FC<TeacherProps> = ({ teacher }) => {
         </Text>
 
         <View style={styles.buttonsContainer}>
-          <RectButton style={[styles.favoriteButton, styles.favorited]}>
-            {/* <Image source={heartOutlineIcon} /> */}
-            <Image source={unfavoriteIcon} />
+          <RectButton
+            onPress={handleToggleFavoritesOnLocalStorage}
+            style={[
+              styles.favoriteButton,
+              teacherIsFavorite ? styles.favorited : {}
+            ]}
+          >
+            <Image
+              source={teacherIsFavorite ? unfavoriteIcon : heartOutlineIcon}
+            />
           </RectButton>
 
           <RectButton style={styles.contactButton}>

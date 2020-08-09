@@ -1,4 +1,7 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { View, Text, FlatList } from 'react-native';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 
@@ -23,27 +26,45 @@ interface FiltersFormData {
 
 function TeacherList() {
   const formRef = useRef<FormHandles>(null);
-  
+
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
 
   const [classes, setClasses] = useState<Teacher[]>([]);
+  const [favoritesIds, setFavoritesIds] = useState<number[]>([]);
 
-  function handleToggleFiltersVisibility() {
+  const loadFavorites = useCallback(() => {
+    AsyncStorage.getItem('favorites')
+      .then(response => {
+        if (response) {
+          const favoriteTeachers = JSON.parse(response);
+          const favoriteTeachersIds = favoriteTeachers.map((item: Teacher) => {
+            return item.id;
+          });
+
+          setFavoritesIds(favoriteTeachersIds);
+        }
+      });
+  }, []);
+
+  const handleToggleFiltersVisibility = useCallback(() => {
     setAreFiltersVisible(!areFiltersVisible);
-  }
+  }, []);
 
-  const handleFiltersSubmit = useCallback(async ({ subject, week_day, time }: FiltersFormData) => {
-    const classSearchResponse = await api.get('classes', {
-      params: {
-        subject,
-        week_day,
-        time,
-      }
-    });
+  const handleFiltersSubmit = useCallback(
+    async ({ subject, week_day, time }: FiltersFormData) => {
+      loadFavorites();
+      
+      const classSearchResponse = await api.get('classes', {
+        params: {
+          subject,
+          week_day,
+          time,
+        }
+      });
 
-    setAreFiltersVisible(false);
-    setClasses(classSearchResponse.data);
-   }, []);
+      setAreFiltersVisible(false);
+      setClasses(classSearchResponse.data);
+    }, []);
 
   return (
     <View style={styles.container}>
@@ -101,7 +122,12 @@ function TeacherList() {
           </PageHeader>
         )}
 
-        renderItem={({ item }: { item: Teacher }) => <TeacherItem teacher={item}/>}
+        renderItem={({ item }: { item: Teacher }) => (
+          <TeacherItem
+            teacher={item}
+            isFavorite={favoritesIds.includes(item.id)}
+          />
+        )}
       />
     </View>
   );
