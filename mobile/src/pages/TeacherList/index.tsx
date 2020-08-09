@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { View, TextInput, Text, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 
 import api from '../../services/api';

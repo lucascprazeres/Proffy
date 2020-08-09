@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Image, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Image, Text, Linking } from 'react-native';
 
 import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
 import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
@@ -23,6 +23,10 @@ interface TeacherProps {
 }
 
 const TeacherItem: React.FC<TeacherProps> = ({ teacher }) => {
+  const handleLinkToWhatsapp = useCallback(() => {
+    Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`);
+  }, []);
+  
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -53,7 +57,7 @@ const TeacherItem: React.FC<TeacherProps> = ({ teacher }) => {
 
           <RectButton style={styles.contactButton}>
             <Image source={whatsappIcon} />
-            <Text style={styles.contactButtonText}>
+            <Text style={styles.contactButtonText} onPress={handleLinkToWhatsapp}>
               Entrar em contato
             </Text>
           </RectButton>
