@@ -1,30 +1,43 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { View, FlatList } from 'react-native';
 
 import PageHeader from '../../components/PageHeader';
-import TeacherItem from '../../components/TeacherItem';
+import TeacherItem, { Teacher } from '../../components/TeacherItem';
 
 import styles from './styles';
 
-const fakeTeacher = {
-  id: 1,
-  name: 'romero brito',
-  avatar: 'https://github.com/lucascprazeres.png',
-  whatsapp: '',
-  bio: 'isdjsjdjsd',
-  subject: 'Economia quantica',
-  cost: 444,
-}
-
 function Favorites() {
+  const [favorites, setFavorites] = useState<Teacher[]>([]);
+
+  const loadFavorites = useCallback(() => {
+    AsyncStorage.getItem('favorites')
+      .then(response => {
+        if (response) {
+          const favoriteTeachers = JSON.parse(response);
+
+          setFavorites(favoriteTeachers);
+        }
+      });
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      loadFavorites();
+    }, [])
+  )
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]}
+        data={favorites}
         keyExtractor={item => String(item.id)}
         ListHeaderComponent={() => <PageHeader title="Meus proffys favoritos" />}
 
-        renderItem={() => <TeacherItem teacher={fakeTeacher}/>}
+        renderItem={({ item }) => <TeacherItem teacher={item} isFavorite />}
       />
     </View>
   )

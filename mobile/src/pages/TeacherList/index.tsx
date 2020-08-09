@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -49,6 +50,12 @@ function TeacherList() {
   const handleToggleFiltersVisibility = useCallback(() => {
     setAreFiltersVisible(!areFiltersVisible);
   }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      loadFavorites();
+    }, [])
+  )
 
   const handleFiltersSubmit = useCallback(
     async ({ subject, week_day, time }: FiltersFormData) => {
