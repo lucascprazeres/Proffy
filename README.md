@@ -46,6 +46,9 @@ $ git push origin minha-feature
 
 Depois que a sua pull request for aceita você pode deletar a sua branch.
 
+## 📝 Licença
+Esse projeto se encontra sob a licença **MIT**. Para mais informações, acesse o arquivo **LICENSE**.
+
 <hr />
 
 <h4 align=center>Made with 💜 by <a href="https://www.linkedin.com/in/lucas-prazeres/">Lucas dos Prazeres</a></h4>
