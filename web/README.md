@@ -1,5 +1,6 @@
-<img src="../.github/proffy-banner.png"/>
 <h1 align=center>
+  <img src="../.github/proffy-banner.png"/>
+  <br /><br />
   ⚛️ Proffy WEB ⚛️
   <br /><br />
   <div align=center>
@@ -15,7 +16,7 @@
   🤯 Prévia do projeto
 </h2>
 
-<img src="../.github/proffy-web.gif" />
+<div align=center ><img width="800" src="../.github/proffy-web.gif" /></div>
 
 <h2>
   👨‍💻 Tecnologias utilizadas
