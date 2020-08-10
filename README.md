@@ -14,7 +14,7 @@ Para ver de perto como isso funciona, utilize o painel de navegação abaixo par
 
 - [Backend](./api)
 - [Cliente Web](./web)
-- [Cliente Mobile (ainda não implementado)](./mobile)
+- [Cliente Mobile](./mobile)
 
 ## 😍 Como contribuir com esse projeto?
 
